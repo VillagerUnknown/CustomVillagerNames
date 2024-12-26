@@ -1,0 +1,15 @@
+{
+  "text.autoconfig.villagerunknown-customvillagernames.title": "VillagerUnknown's Custom Villager Names",
+
+  "text.autoconfig.villagerunknown-customvillagernames.category.General": "General",
+
+  "text.autoconfig.villagerunknown-customvillagernames.category.Villagers": "Villagers",
+
+  "text.autoconfig.villagerunknown-customvillagernames.option.chanceToPrependTextToName": "Chance to Prepend Text to Name",
+  "text.autoconfig.villagerunknown-customvillagernames.option.PrependText": "Prepend Text",
+  "text.autoconfig.villagerunknown-customvillagernames.option.prependProfessionToName": "Prepend Profession to Name",
+  "text.autoconfig.villagerunknown-customvillagernames.option.chanceToAppendSrToAdults": "Chance to Append \"Sr.\" to Adult Names",
+  "text.autoconfig.villagerunknown-customvillagernames.option.SrText": "Sr. Text",
+  "text.autoconfig.villagerunknown-customvillagernames.option.chanceToAppendJrToChildren": "Chance to Append \"Jr.\" to Baby Names",
+  "text.autoconfig.villagerunknown-customvillagernames.option.JrText": "Jr. Text"
+}
