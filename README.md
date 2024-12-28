@@ -1,6 +1,6 @@
 # VillagerUnknown's Custom Villager Names
 
-Villagers will be assigned random names you can customize through a config file.
+Villagers will be assigned random names you can customize through the config.
 
 **Options:**
 
