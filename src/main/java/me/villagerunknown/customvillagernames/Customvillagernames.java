@@ -1,6 +1,7 @@
 package me.villagerunknown.customvillagernames;
 
 import me.villagerunknown.customvillagernames.feature.randomVillagerNamesFeature;
+import me.villagerunknown.customvillagernames.feature.replaceProfessionsFeature;
 import me.villagerunknown.platform.Platform;
 import me.villagerunknown.platform.PlatformConfigData;
 import me.villagerunknown.platform.PlatformMod;
@@ -33,6 +34,7 @@ public class Customvillagernames implements ModInitializer {
 		Platform.init_mod( MOD );
 		
 		// # Add Features
+		featureManager.addFeature( "replaceProfessions", replaceProfessionsFeature::execute );
 		featureManager.addFeature( "randomVillagerNames", randomVillagerNamesFeature::execute );
 	}
 	
