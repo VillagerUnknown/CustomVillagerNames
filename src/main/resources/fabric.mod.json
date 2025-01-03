@@ -3,7 +3,7 @@
   "id": "villagerunknown-customvillagernames",
   "version": "${version}",
   "name": "VillagerUnknown's Custom Villager Names",
-  "description": "Adds random custom names to villagers.",
+  "description": "Villagers will be assigned random names you can customize through the config.",
   "authors": ["VillagerUnknown"],
   "contact": {
     "homepage":"https://discord.gg/PXjXh6M38H"
