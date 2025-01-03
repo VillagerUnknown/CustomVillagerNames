@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.4]
 
-## Added Feature: Replace Professions
+### Added
+
+- Added Replace Professions feature
 
 ## [1.0.3]
 
