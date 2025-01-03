@@ -2,15 +2,13 @@ package me.villagerunknown.customvillagernames.feature;
 
 import me.villagerunknown.customvillagernames.Customvillagernames;
 import me.villagerunknown.platform.Platform;
-import me.villagerunknown.platform.list.StringsList;
+import me.villagerunknown.platform.builder.StringsListBuilder;
 import me.villagerunknown.platform.util.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.util.TypeFilter;
 
 import java.util.List;
 
@@ -19,7 +17,7 @@ public class randomVillagerNamesFeature {
 	private static final String FILENAME = Customvillagernames.MOD_ID + "-list.json";
 	private static final List<String> NAMES_LIST = ListUtil.HUMAN_NAMES;
 	
-	private static StringsList names = new StringsList( FILENAME, NAMES_LIST );
+	private static StringsListBuilder names = new StringsListBuilder( FILENAME, NAMES_LIST );
 	
 	public static void execute() {
 		// Add reload event
@@ -39,11 +37,11 @@ public class randomVillagerNamesFeature {
 	
 	public static void reload() {
 		Customvillagernames.LOGGER.info( "Reloading " + FILENAME );
-		names = new StringsList( FILENAME, NAMES_LIST );
+		names = new StringsListBuilder( FILENAME, NAMES_LIST );
 	}
 	
 	private static void randomizeName( VillagerEntity villager ) {
-		String profession = villager.getVillagerData().getProfession().toString().toLowerCase();
+		String profession = replaceProfessionsFeature.getProfession( villager.getVillagerData().getProfession().toString().toLowerCase() );
 		String professionCapitalized = StringUtil.capitalize( profession );
 		String name = names.getRandomString();
 		
@@ -83,7 +81,20 @@ public class randomVillagerNamesFeature {
 				String[] namePartsNoProfession = ArrayUtil.removeFirstElement( nameParts );
 				String gluedNamePartsNoProfession = ArrayUtil.joinValues( namePartsNoProfession, " " );
 				
-				if( ListUtil.VILLAGER_PROFESSION_STRINGS.contains( nameParts[0].toLowerCase().trim() ) ) {
+//				List<String> professionStrings = ListUtil.VILLAGER_PROFESSION_STRINGS;
+				List<String> professionStrings = replaceProfessionsFeature.getList();
+				
+//				boolean nameContainsProfession = professionStrings.contains( nameParts[0].toLowerCase().trim() );
+				boolean nameContainsProfession = false;
+				
+				for (String professionString : professionStrings) {
+					if( existingName.contains( StringUtil.capitalize( professionString ) ) ) {
+						nameContainsProfession = true;
+						gluedNamePartsNoProfession = existingName.replace( StringUtil.capitalize( professionString ), "" ).trim();
+					} // if
+				} // for
+				
+				if( nameContainsProfession ) {
 					// # Villager has a valid profession in their name.
 					
 					if( profession.equals("none") ) {

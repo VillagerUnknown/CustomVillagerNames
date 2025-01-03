@@ -3,7 +3,7 @@
   "id": "villagerunknown-customvillagernames",
   "version": "${version}",
   "name": "VillagerUnknown's Custom Villager Names",
-  "description": "Hrm.. Adds random custom names to villagers.",
+  "description": "Adds random custom names to villagers.",
   "authors": ["VillagerUnknown"],
   "contact": {
     "homepage":"https://discord.gg/PXjXh6M38H"
@@ -33,7 +33,7 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}",
-    "villagerunknown-platform": ">=1.1.0"
+    "villagerunknown-platform": ">=1.1.1"
   },
   "custom": {
     "modmenu": {
