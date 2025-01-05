@@ -2,6 +2,8 @@
 
 Villagers will be assigned random names you can customize through the config.
 
+Villager professions can be changed through a config file.
+
 **Options:**
 
 * Chance to Prepend Text To Name
