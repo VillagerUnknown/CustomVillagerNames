@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.5]
+
+### Fixed
+
+- Villager profession replacements with spaces are now properly removed when they disconnect from their workstation.
+
 ## [1.0.4]
 
 ### Added

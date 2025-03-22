@@ -42,7 +42,7 @@ public class randomVillagerNamesFeature {
 	
 	private static void randomizeName( VillagerEntity villager ) {
 		String profession = replaceProfessionsFeature.getProfession( villager.getVillagerData().getProfession().toString().toLowerCase() );
-		String professionCapitalized = StringUtil.capitalize( profession );
+		String professionCapitalized = StringUtil.capitalizeAll( profession );
 		String name = names.getRandomString();
 		
 		if( villager.getCustomName() == null ) {
@@ -78,19 +78,21 @@ public class randomVillagerNamesFeature {
 				
 				var nameParts = existingName.split(" ");
 				
-				String[] namePartsNoProfession = ArrayUtil.removeFirstElement( nameParts );
-				String gluedNamePartsNoProfession = ArrayUtil.joinValues( namePartsNoProfession, " " );
+//				String[] namePartsNoProfession = ArrayUtil.removeFirstElement( nameParts );
+				String gluedNamePartsNoProfession = ArrayUtil.joinValues( nameParts, " " );
 				
 //				List<String> professionStrings = ListUtil.VILLAGER_PROFESSION_STRINGS;
-				List<String> professionStrings = replaceProfessionsFeature.getList();
+				List<String> professionStrings = replaceProfessionsFeature.getKeysList();
 				
 //				boolean nameContainsProfession = professionStrings.contains( nameParts[0].toLowerCase().trim() );
 				boolean nameContainsProfession = false;
 				
 				for (String professionString : professionStrings) {
-					if( existingName.contains( StringUtil.capitalize( professionString ) ) ) {
+					String capitalizedProfession = replaceProfessionsFeature.getProfessionCapitalized( professionString );
+					
+					if( existingName.contains( capitalizedProfession ) ) {
 						nameContainsProfession = true;
-						gluedNamePartsNoProfession = existingName.replace( StringUtil.capitalize( professionString ), "" ).trim();
+						gluedNamePartsNoProfession = existingName.replace( capitalizedProfession, "" ).trim();
 					} // if
 				} // for
 				
@@ -117,7 +119,7 @@ public class randomVillagerNamesFeature {
 					if( Customvillagernames.CONFIG.prependProfessionToName && !profession.equals("none") && !existingName.contains( professionCapitalized ) ) {
 						// # Villager has a profession.
 						
-						newName = professionCapitalized + " " + existingName; // this is the issue!
+						newName = professionCapitalized + " " + existingName;
 					} else {
 						// # Villager doesn't have a profession.
 						

@@ -25,16 +25,20 @@ public class replaceProfessionsFeature {
 		professions = new StringsMapBuilder( FILENAME, PROFESSIONS_LIST );
 	}
 	
-	public static List<String> getList() {
+	public static List<String> getKeysList() {
+		return professions.getMap().keySet().stream().toList();
+	}
+	
+	public static List<String> getValuesList() {
 		return professions.getMap().values().stream().toList();
 	}
 	
-	public static String getProfession( String profession ) {
-		return professions.getString( profession );
+	public static String getProfession( String professionKey ) {
+		return professions.getString( professionKey );
 	}
 	
-	public static String getProfessionCapitalized( String profession ) {
-		return StringUtil.capitalize( getProfession( profession ) );
+	public static String getProfessionCapitalized( String professionKey ) {
+		return StringUtil.capitalizeAll( getProfession( professionKey ) );
 	}
 	
 }

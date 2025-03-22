@@ -2,7 +2,8 @@
 
 Villagers will be assigned random names you can customize through the config.
 
-Villager professions can be changed through a config file.
+Villager professions can be replaced through a config file. 
+This is compatible with modded villagers by manually adding their profession to the config file.
 
 **Options:**
 
