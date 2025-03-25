@@ -6,7 +6,8 @@
   "description": "Villagers will be assigned random names you can customize through the config.",
   "authors": ["VillagerUnknown"],
   "contact": {
-    "homepage":"https://github.com/VillagerUnknown/CustomVillagerNames"
+    "sources":"https://github.com/VillagerUnknown/CustomVillagerNames",
+    "issues":"https://github.com/VillagerUnknown/CustomVillagerNames/issues"
   },
   "license": "CC-BY-4.0",
   "icon": "assets/customvillagernames/villagerunknown-custom-villager-names.png",
@@ -34,12 +35,5 @@
     "fabric": "*",
     "minecraft": "${minecraft_version}",
     "villagerunknown-platform": ">=1.1.1"
-  },
-  "custom": {
-    "modmenu": {
-      "links": {
-        "modmenu.discord": "https://github.com/VillagerUnknown/CustomVillagerNames"
-      }
-    }
   }
 }
