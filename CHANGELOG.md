@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.6]
+
+### Changed
+
+- Using a Name Tag with a Custom Name on a Villager now fully resets the Villager's name.
+
 ## [1.0.5]
 
 ### Fixed
