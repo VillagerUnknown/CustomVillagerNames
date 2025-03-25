@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Using a Name Tag with a Custom Name on a Villager now fully resets the Villager's name.
+- Using a Name Tag with a Custom Name on a Villager now fully resets the Villager's profession in their name.
 
 ## [1.0.5]
 
