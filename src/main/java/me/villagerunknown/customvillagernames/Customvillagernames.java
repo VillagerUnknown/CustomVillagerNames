@@ -2,11 +2,10 @@ package me.villagerunknown.customvillagernames;
 
 import me.villagerunknown.customvillagernames.feature.randomVillagerNamesFeature;
 import me.villagerunknown.customvillagernames.feature.replaceProfessionsFeature;
+import me.villagerunknown.customvillagernames.feature.resetVillagerNameFeature;
 import me.villagerunknown.platform.Platform;
-import me.villagerunknown.platform.PlatformConfigData;
 import me.villagerunknown.platform.PlatformMod;
 import me.villagerunknown.platform.manager.featureManager;
-import me.villagerunknown.platform.util.PlatformUtil;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 
@@ -36,6 +35,7 @@ public class Customvillagernames implements ModInitializer {
 		// # Add Features
 		featureManager.addFeature( "replaceProfessions", replaceProfessionsFeature::execute );
 		featureManager.addFeature( "randomVillagerNames", randomVillagerNamesFeature::execute );
+		featureManager.addFeature( "resetVillagerNames", resetVillagerNameFeature::execute );
 	}
 	
 }
