@@ -6,11 +6,17 @@ import me.villagerunknown.platform.builder.StringsListBuilder;
 import me.villagerunknown.platform.util.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.passive.VillagerEntity;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableTextContent;
+import net.minecraft.village.VillagerProfession;
 
 import java.util.List;
+import java.util.Optional;
 
 public class randomVillagerNamesFeature {
 	
@@ -41,7 +47,16 @@ public class randomVillagerNamesFeature {
 	}
 	
 	private static void randomizeName( VillagerEntity villager ) {
-		String profession = replaceProfessionsFeature.getProfession( villager.getVillagerData().getProfession().toString().toLowerCase() );
+		Optional<RegistryKey<VillagerProfession>> professionKey = villager.getVillagerData().profession().getKey();
+		String profession = "none";
+		
+		if( professionKey.isPresent() ) {
+			VillagerProfession professionRegistration = Registries.VILLAGER_PROFESSION.get(professionKey.get());
+			if( null != professionRegistration ) {
+				profession = replaceProfessionsFeature.getProfession(professionRegistration.id().getString().toLowerCase());
+			} // if
+		} // if
+		
 		String professionCapitalized = StringUtil.capitalizeAll( profession );
 		String name = names.getRandomString();
 		

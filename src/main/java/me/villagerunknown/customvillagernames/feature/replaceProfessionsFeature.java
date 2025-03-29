@@ -34,7 +34,11 @@ public class replaceProfessionsFeature {
 	}
 	
 	public static String getProfession( String professionKey ) {
-		return professions.getString( professionKey );
+		if( professions.getMap().containsKey( professionKey ) ) {
+			return professions.getString( professionKey );
+		} // if
+		
+		return "none";
 	}
 	
 	public static String getProfessionCapitalized( String professionKey ) {

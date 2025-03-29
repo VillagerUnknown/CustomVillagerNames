@@ -6,7 +6,7 @@
   "description": "Villagers will be assigned random names you can customize through the config.",
   "authors": ["VillagerUnknown"],
   "contact": {
-    "homepage":"https://modrinth.com/mod/villagerunknown-customvillagernames",
+    "homepage":"https://github.com/VillagerUnknown",
     "sources":"https://github.com/VillagerUnknown/CustomVillagerNames",
     "issues":"https://github.com/VillagerUnknown/CustomVillagerNames/issues"
   },
@@ -35,6 +35,6 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}",
-    "villagerunknown-platform": ">=1.2.0+1.21.4"
+    "villagerunknown-platform": ">=1.2.0+1.21.5"
   }
 }
