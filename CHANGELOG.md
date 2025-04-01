@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.7+1.21.5]
+
+### Fixed
+
+- Fixed villager profession replacement.
+
 ## [1.0.6+1.21.5]
 
 ### Changed

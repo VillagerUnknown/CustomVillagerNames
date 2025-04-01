@@ -33,9 +33,12 @@ public class Customvillagernames implements ModInitializer {
 		Platform.init_mod( MOD );
 		
 		// # Add Features
-		featureManager.addFeature( "replaceProfessions", replaceProfessionsFeature::execute );
-		featureManager.addFeature( "randomVillagerNames", randomVillagerNamesFeature::execute );
-		featureManager.addFeature( "resetVillagerNames", resetVillagerNameFeature::execute );
+		featureManager.addFeatureLast( "replaceProfessions", replaceProfessionsFeature::execute );
+		featureManager.addFeatureLast( "randomVillagerNames", randomVillagerNamesFeature::execute );
+		featureManager.addFeatureLast( "resetVillagerNames", resetVillagerNameFeature::execute );
+		
+		// # Load Features
+		featureManager.loadFeatures();
 	}
 	
 }
