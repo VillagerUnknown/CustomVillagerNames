@@ -11,31 +11,23 @@ import org.slf4j.Logger;
 
 public class Customvillagernames implements ModInitializer {
 
-	public static PlatformMod<CustomvillagernamesConfigData> MOD = null;
-	public static String MOD_ID = null;
-	public static Logger LOGGER = null;
-	public static CustomvillagernamesConfigData CONFIG = null;
+	public static PlatformMod<CustomvillagernamesConfigData> MOD = Platform.register( "customvillagernames", Customvillagernames.class, CustomvillagernamesConfigData.class );
+	public static String MOD_ID = MOD.getModId();
+	public static Logger LOGGER = MOD.getLogger();
+	public static CustomvillagernamesConfigData CONFIG = MOD.getConfig();
 	
 	@Override
 	public void onInitialize() {
-		// # Register Mod w/ Platform
-		MOD = Platform.register( "customvillagernames", Customvillagernames.class, CustomvillagernamesConfigData.class );
-		
-		MOD_ID = MOD.getModId();
-		LOGGER = MOD.getLogger();
-		CONFIG = MOD.getConfig();
-		
-		// # Initialize Mod
-		init();
-	}
-	
-	private static void init(){
+		// # Register mod with Platform
 		Platform.init_mod( MOD );
 		
 		// # Add Features
-		featureManager.addFeature( "replaceProfessions", replaceProfessionsFeature::execute );
-		featureManager.addFeature( "randomVillagerNames", randomVillagerNamesFeature::execute );
-		featureManager.addFeature( "resetVillagerNames", resetVillagerNameFeature::execute );
+		featureManager.addFeature( "replace-professions", replaceProfessionsFeature::execute );
+		featureManager.addFeature( "random-villager-names", randomVillagerNamesFeature::execute );
+		featureManager.addFeature( "reset-villager-names", resetVillagerNameFeature::execute );
+		
+		// # Load Features
+		featureManager.loadFeatures();
 	}
 	
 }
