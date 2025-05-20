@@ -10,7 +10,7 @@
     "sources":"https://github.com/VillagerUnknown/CustomVillagerNames",
     "issues":"https://github.com/VillagerUnknown/CustomVillagerNames/issues"
   },
-  "license": "CC-BY-4.0",
+  "license": "MIT",
   "icon": "assets/villagerunknown-customvillagernames/villagerunknown-custom-villager-names.png",
   "environment": "*",
   "entrypoints": {
