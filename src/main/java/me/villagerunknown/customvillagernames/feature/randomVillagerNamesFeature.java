@@ -6,11 +6,15 @@ import me.villagerunknown.platform.builder.StringsListBuilder;
 import me.villagerunknown.platform.util.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.passive.VillagerEntity;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.village.VillagerProfession;
 
 import java.util.List;
+import java.util.Optional;
 
 public class randomVillagerNamesFeature {
 	
@@ -41,7 +45,20 @@ public class randomVillagerNamesFeature {
 	}
 	
 	private static void randomizeName( VillagerEntity villager ) {
-		String profession = replaceProfessionsFeature.getProfession( villager.getVillagerData().getProfession().toString().toLowerCase() );
+		Optional<RegistryKey<VillagerProfession>> professionKey = villager.getVillagerData().profession().getKey();
+		String profession = replaceProfessionsFeature.NO_PROFESSION;
+		
+		if( professionKey.isPresent() ) {
+			VillagerProfession professionRegistration = Registries.VILLAGER_PROFESSION.get(professionKey.get());
+			if( null != professionRegistration ) {
+				profession = replaceProfessionsFeature.getProfession(
+						professionRegistration.id().toString()
+								.replace( "translation{key='entity.minecraft.villager.", "" )
+								.replace( "', args=[]}", "" )
+				);
+			} // if
+		} // if
+		
 		String professionCapitalized = StringUtil.capitalizeAll( profession );
 		String name = names.getRandomString();
 		
@@ -52,7 +69,7 @@ public class randomVillagerNamesFeature {
 				name = Customvillagernames.CONFIG.PrependText + name;
 			} // if
 			
-			if(Customvillagernames.CONFIG.prependProfessionToName && !profession.equals("none")) {
+			if(Customvillagernames.CONFIG.prependProfessionToName && !profession.equals(replaceProfessionsFeature.NO_PROFESSION)) {
 				name = professionCapitalized + " " + name;
 			} // if
 			
@@ -99,11 +116,11 @@ public class randomVillagerNamesFeature {
 				if( nameContainsProfession ) {
 					// # Villager has a valid profession in their name.
 					
-					if( profession.equals("none") ) {
+					if( profession.equals(replaceProfessionsFeature.NO_PROFESSION) ) {
 						// # Villager has no profession.
 						
 						newName = gluedNamePartsNoProfession;
-					} else if( !profession.equals("none") && !nameParts[0].toLowerCase().equals(profession) ){
+					} else if( !profession.equals(replaceProfessionsFeature.NO_PROFESSION) && !nameParts[0].toLowerCase().equals(profession) ){
 						// # Villager's active profession is different from the profession in their name.
 						
 						newName = professionCapitalized + " " + gluedNamePartsNoProfession;
@@ -116,7 +133,7 @@ public class randomVillagerNamesFeature {
 				} else {
 					// # Villager doesn't have a valid profession in their name.
 					
-					if( Customvillagernames.CONFIG.prependProfessionToName && !profession.equals("none") && !existingName.contains( professionCapitalized ) ) {
+					if( Customvillagernames.CONFIG.prependProfessionToName && !profession.equals(replaceProfessionsFeature.NO_PROFESSION) && !existingName.contains( professionCapitalized ) ) {
 						// # Villager has a profession.
 						
 						newName = professionCapitalized + " " + existingName;
@@ -131,7 +148,7 @@ public class randomVillagerNamesFeature {
 			} else {
 				// # Villager's name does not have a space.
 				
-				if( Customvillagernames.CONFIG.prependProfessionToName && !profession.equals("none")) {
+				if( Customvillagernames.CONFIG.prependProfessionToName && !profession.equals(replaceProfessionsFeature.NO_PROFESSION)) {
 					// # Villager has a profession.
 					
 					newName = professionCapitalized + " " + existingName;
